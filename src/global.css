@@ -1,0 +1,40 @@
+:root {
+    --white: #fff;
+    --gray-100: #e1e1e6;
+    --gray-300: #c4c4cc;
+    --gray-400: #8d8d99;
+    --gray-600: #323238;
+    --gray-700: #29292e;
+    --gray-800: #202024;
+    --gray-900: #121214;
+
+    --green-500: #00875f;
+
+    --red-500: #f75a68;
+    --red-700: #ff2a3d;
+
+    --blue-300: #003cff;
+
+}
+
+body {
+    /* background-image: var(--gray-100); */
+    background-image: url("https://images.unsplash.com/photo-1550353127-b0da3aeaa0ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--gray-300);
+    -webkit-font-smoothing: antialiased
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, input, textarea, button {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+}
