@@ -5,7 +5,7 @@ import { ReCAPTCHA } from 'react-google-recaptcha';
 import Keydown from 'react-keydown';
 import { Link } from 'react-router-dom';
 
-export function Login({}) {
+export function Login({ }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [recaptchaValue, setRecaptchaValue] = useState('');
@@ -30,9 +30,9 @@ export function Login({}) {
       // redireciona o usuário para a página principal
       window.location.href = '/pagina-principal';
     } catch (error) {
-        const errorMessage = error.response ? error.response.data.message : 'Ocorreu um erro ao fazer login. Tente novamente mais tarde.';
-        // verifique se há uma mensagem de erro personalizada na resposta da API. Se não houver, use uma mensagem genérica.
-        alert(errorMessage);
+      const errorMessage = error.response ? error.response.data.message : 'Ocorreu um erro ao fazer login. Tente novamente mais tarde.';
+      // verifique se há uma mensagem de erro personalizada na resposta da API. Se não houver, use uma mensagem genérica.
+      alert(errorMessage);
     }
   };
 
@@ -43,16 +43,15 @@ export function Login({}) {
         alt=""
       />
       <div className={styles.divInputs}>
-        <label className={styles.label} htmlFor="login">
+        <label htmlFor="login">
           Login:
         </label>
-        <input className={styles.input} name="login" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-  
-        <label className={styles.label} htmlFor="senha">
+        <input name="login" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+
+        <label htmlFor="senha">
           Senha:
         </label>
         <input
-          className={styles.input}
           name="senha"
           type="password"
           value={password}
@@ -63,13 +62,13 @@ export function Login({}) {
             }
           }}
         />
-  
+
         <ReCAPTCHA
           sitekey="6LfLWj4mAAAAAHM9dOwZwQ40P9M90HF6NQ1UagtM"
           onChange={handleRecaptchaChange}
         />
         <button className={styles.loginButton} onClick={handleLogin}>Login</button>
-  
+
         <div className={styles.actions}>
           <a href="#">Esqueci minha senha</a>
           <Link to="/cadastro-usuario">Cadastre-se</Link>

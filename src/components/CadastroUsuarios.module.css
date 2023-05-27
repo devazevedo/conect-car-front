@@ -1,0 +1,87 @@
+.divCadastro {
+    background: rgb(80 80 80 / 89%);
+    height: 55rem;
+    width: 45rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.divCadastro img {
+    max-width: 20%;
+}
+
+.divInputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 0.3rem;
+}
+
+.cadastroButton {
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 2rem;
+}
+
+.cadastroButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.cadastroButton:hover {
+    background-color: #000000a1;
+}
+
+.divInfoPrincipal {
+    display: flex;
+    flex-direction: row;
+}
+
+.divSenhas {
+    display: flex;
+    flex-direction: row;
+}
+
+.inputWithButton {
+    position: relative;
+}
+
+.inputWithButton input {
+    padding-right: 40px;
+}
+
+.passwordInput input {
+    padding-right: 40px;
+}
+
+.eyeButton {
+    position: absolute;
+    top: 37%;
+    right: 10px;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.eyeButton svg {
+    color: #888;
+    font-size: 16px;
+}
+
+.eyeButton:hover svg {
+    color: #333;
+}
+
+.inputInvalido {
+    border-bottom: 2px solid red;
+}
