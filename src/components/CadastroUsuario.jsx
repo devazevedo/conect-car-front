@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './CadastroUsuarios.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -6,7 +6,7 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 import InputMask from 'react-input-mask';
 import axios from 'axios';
 
-export function CadastroUsuario({ }) {
+export function CadastroUsuario() {
   const [password, setSenha] = useState('');
   const [username, setLogin] = useState('');
   const [email, setEmail] = useState('');
@@ -19,6 +19,11 @@ export function CadastroUsuario({ }) {
   const [cpfValido, setCpfValido] = useState(true);
   const [inputsPreenchidos, setInputsPreenchidos] = useState(false);
   const [touchedInputs, setTouchedInputs] = useState({});
+
+  useEffect(() => {
+    const inputsPreenchidos = validarInputs();
+    setInputsPreenchidos(inputsPreenchidos);
+  }, [username, email, cpf, password, confirmaSenha]);
 
   const validarInputs = () => {
     if (
@@ -165,7 +170,7 @@ export function CadastroUsuario({ }) {
             ? error.response.data.message
             : 'Ocorreu um erro ao fazer login. Tente novamente mais tarde.';
           // verifique se há uma mensagem de erro personalizada na resposta da API. Se não houver, use uma mensagem genérica.
-          alert(errorMessage);
+          toast.error(errorMessage);
         }
       }
     } else {
