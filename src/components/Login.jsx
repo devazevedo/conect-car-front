@@ -4,11 +4,25 @@ import { useEffect, useState } from 'react';
 import { ReCAPTCHA } from 'react-google-recaptcha';
 import Keydown from 'react-keydown';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export function Login({ }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [recaptchaValue, setRecaptchaValue] = useState('');
+  const [showResendModal, setShowResendModal] = useState(false);
+  
+  const handleResendEmail = async () => {
+    setShowResendModal(false);
+    try {
+      const response = await axios.post('http://localhost:3000/api/reenviar_email', { username });
+      toast.success('Email reenviado com sucesso');
+    } catch (error) {
+      const errorMessage = error.response ? error.response.data.message : 'Ocorreu um erro ao reenviar o email de verificação. Tente novamente mais tarde.';
+      toast.error(errorMessage);
+    }
+  };
 
   const handleRecaptchaChange = (value) => {
     setRecaptchaValue(value);
@@ -32,7 +46,11 @@ export function Login({ }) {
     } catch (error) {
       const errorMessage = error.response ? error.response.data.message : 'Ocorreu um erro ao fazer login. Tente novamente mais tarde.';
       // verifique se há uma mensagem de erro personalizada na resposta da API. Se não houver, use uma mensagem genérica.
-      alert(errorMessage);
+      if(errorMessage === 'Email não verificado'){
+        setShowResendModal(true);
+      }else{
+        toast.error(errorMessage);
+      }
     }
   };
 
@@ -74,6 +92,17 @@ export function Login({ }) {
           <Link to="/cadastro-usuario">Cadastre-se</Link>
         </div>
       </div>
+      <ToastContainer />
+      {showResendModal && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <h2>Email não verificado</h2>
+            <p>Para acessar a plataforma seu email precisa ser validado, deseja reenviar o email?</p>
+            <button onClick={handleResendEmail}>Reenviar email</button>
+            <button onClick={() => setShowResendModal(false)}>Fechar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
